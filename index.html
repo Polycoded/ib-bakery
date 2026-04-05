@@ -28,9 +28,9 @@
                         }
                     },
                     fontFamily: {
-                        serif:    ['"Playfair Display"', 'serif'],
-                        elegant:  ['"Cormorant Garamond"', 'serif'],
-                        sans:     ['"Poppins"', 'sans-serif'],
+                        serif:   ['"Playfair Display"', 'serif'],
+                        elegant: ['"Cormorant Garamond"', 'serif'],
+                        sans:    ['"Poppins"', 'sans-serif'],
                     },
                     letterSpacing: {
                         luxury: '0.18em',
@@ -77,7 +77,7 @@
         .preloader-dot:nth-child(3) { animation-delay: 0.6s; }
         @keyframes dot-pulse {
             0%,80%,100% { opacity: 0.15; transform: scale(0.8); }
-            40%          { opacity: 1; transform: scale(1); }
+            40%         { opacity: 1; transform: scale(1); }
         }
 
         /* =============================================
@@ -229,7 +229,7 @@
         .fade-delay-3 { animation-delay: 0.50s; }
 
         /* =============================================
-           SCROLL UTILITIES
+           SCROLL UTILITIES (OPTIMIZED FOR NATIVE SWIPE)
         ============================================= */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -239,7 +239,17 @@
         }
         .scroll-container-wrap::before { left: 0; background: linear-gradient(to right, #ffffff, transparent); }
         .scroll-container-wrap::after  { right: 0; background: linear-gradient(to left, #ffffff, transparent); }
-        .scroll-content { overflow: hidden; }
+        
+        /* Fixed scroll class to use CSS native snapping instead of JS loop */
+        .scroll-content { 
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory; 
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .cake-card, .dessert-card { 
+            scroll-snap-align: center; 
+        }
 
         /* =============================================
            UTILITIES & BADGES
@@ -346,7 +356,7 @@
         <!-- HERO -->
         <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 w-full h-full">
-                <img src="image_bb4307.jpg"
+                <img src="486605147_1433666384573871_2317721932263417713_n.jpg"
                      onerror="this.src='https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=2000&auto=format&fit=crop'"
                      alt="Fresh baked goods display"
                      class="w-full h-full object-cover object-center opacity-90">
@@ -391,11 +401,11 @@
                 <div class="flex flex-col md:flex-row items-center gap-14 lg:gap-24">
                     <div class="w-full md:w-1/2 grid grid-cols-2 gap-4 relative">
                         <img src="489305956_1448665259740650_3549309140238958396_n.jpg"
-                             onerror="this.src='https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=800&auto=format&fit=crop'"
+                             loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=800&auto=format&fit=crop'"
                              alt="Custom Kids Cakes"
                              class="gallery-item rounded-2xl shadow-lg w-full h-64 object-cover mt-8 border border-brand-DEFAULT/10 image-zoom overflow-hidden">
                         <img src="490019632_1449303516343491_225561430116422405_n.jpg"
-                             onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop'"
+                             loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop'"
                              alt="Beautiful wedding cake"
                              class="gallery-item rounded-2xl shadow-lg w-full h-64 object-cover border border-brand-DEFAULT/10 image-zoom overflow-hidden">
                         <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 glass-badge px-5 py-2 rounded-full text-xs font-semibold whitespace-nowrap shadow-md" style="letter-spacing:0.12em;backdrop-filter:blur(10px);">
@@ -458,7 +468,7 @@
                     <div class="matte-card rounded-2xl overflow-hidden image-zoom group flex flex-col cursor-default">
                         <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
                             <img src="490132153_1452522552688254_2895289336128599183_n.jpg"
-                                 onerror="this.src='https://images.unsplash.com/photo-1585692277358-e364c5739d16?q=80&w=800&auto=format&fit=crop'"
+                                 loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1585692277358-e364c5739d16?q=80&w=800&auto=format&fit=crop'"
                                  alt="Cheesy Loaded Fries" class="w-full h-full object-cover">
                         </div>
                         <div class="p-7 flex flex-col flex-grow">
@@ -475,7 +485,7 @@
                     <div class="matte-card rounded-2xl overflow-hidden image-zoom group flex flex-col cursor-default">
                         <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
                             <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=800&auto=format&fit=crop"
-                                 alt="Evening Puffs" class="w-full h-full object-cover">
+                                 loading="lazy" alt="Evening Puffs" class="w-full h-full object-cover">
                         </div>
                         <div class="p-7 flex flex-col flex-grow">
                             <h4 class="font-elegant font-semibold text-brand-DEFAULT mb-2" style="font-size:1.3rem;">Evening Puffs</h4>
@@ -504,27 +514,27 @@
 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     <div class="gallery-item overflow-hidden rounded-2xl h-52 md:h-64 image-zoom col-span-2 border border-brand-DEFAULT/10 shadow-md">
-                        <img src="490019632_1449303516343491_225561430116422405_n.jpg"
+                        <img src="490019632_1449303516343491_225561430116422405_n.jpg" loading="lazy"
                              onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop'"
                              class="w-full h-full object-cover" alt="Wedding Cake">
                     </div>
                     <div class="gallery-item overflow-hidden rounded-2xl h-52 md:h-64 image-zoom border border-brand-DEFAULT/10 shadow-md">
-                        <img src="493504641_1464427984831044_4455884902004233999_n.jpg"
+                        <img src="493504641_1464427984831044_4455884902004233999_n.jpg" loading="lazy"
                              onerror="this.src='https://images.unsplash.com/photo-1557925923-33b251dc32a6?q=80&w=800&auto=format&fit=crop'"
                              class="w-full h-full object-cover" alt="Spiderman Cake">
                     </div>
                     <div class="gallery-item overflow-hidden rounded-2xl h-52 md:h-64 image-zoom border border-brand-DEFAULT/10 shadow-md">
-                        <img src="489463079_1448665063074003_9170913617709119392_n.jpg"
+                        <img src="489463079_1448665063074003_9170913617709119392_n.jpg" loading="lazy"
                              onerror="this.src='https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=800&auto=format&fit=crop'"
                              class="w-full h-full object-cover" alt="Cocomelon Cake">
                     </div>
                     <div class="gallery-item overflow-hidden rounded-2xl h-52 md:h-64 image-zoom border border-brand-DEFAULT/10 shadow-md">
-                        <img src="488253758_1442571063683403_4251100749907473567_n.jpg"
+                        <img src="488253758_1442571063683403_4251100749907473567_n.jpg" loading="lazy"
                              onerror="this.src='https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?q=80&w=800&auto=format&fit=crop'"
                              class="w-full h-full object-cover" alt="Red Velvet Cake">
                     </div>
                     <div class="gallery-item overflow-hidden rounded-2xl h-52 md:h-64 image-zoom col-span-2 md:col-span-3 border border-brand-DEFAULT/10 shadow-md">
-                        <img src="490517089_1452274292713080_3072637725145829695_n.jpg"
+                        <img src="490517089_1452274292713080_3072637725145829695_n.jpg" loading="lazy"
                              onerror="this.src='https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=800&auto=format&fit=crop'"
                              class="w-full h-full object-cover" alt="Brownie Ice Cream">
                     </div>
@@ -598,7 +608,7 @@
 
                     <!-- Image + social panel -->
                     <div class="w-full lg:w-7/12 relative min-h-[400px] overflow-hidden">
-                        <img src="490517089_1452274292713080_3072637725145829695_n.jpg"
+                        <img src="490517089_1452274292713080_3072637725145829695_n.jpg" loading="lazy"
                              onerror="this.src='https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop'"
                              alt="Sizzling Brownie" class="absolute inset-0 w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center p-8" style="background:rgba(255,255,255,0.6);backdrop-filter:blur(2px);">
@@ -618,7 +628,7 @@
     </div>
 
     <!-- ========================================================= -->
-    <!--                       VIEW: CAKES                         -->
+    <!--                       VIEW: CAKES                          -->
     <!-- ========================================================= -->
     <div id="view-cakes" class="page-view hidden">
         <div class="page-hero pt-32 pb-14 text-center">
@@ -655,7 +665,7 @@
                         <!-- Cake 1 -->
                         <div class="cake-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="490019632_1449303516343491_225561430116422405_n.jpg"
+                                <img src="490019632_1449303516343491_225561430116422405_n.jpg" loading="lazy"
                                      onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop'"
                                      alt="Elegant Wedding Cakes" class="w-full h-full object-cover">
                                 <div class="glass-badge-red absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold shadow-md">Bestseller</div>
@@ -673,7 +683,7 @@
                         <!-- Cake 2 -->
                         <div class="cake-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="493504641_1464427984831044_4455884902004233999_n.jpg"
+                                <img src="493504641_1464427984831044_4455884902004233999_n.jpg" loading="lazy"
                                      onerror="this.src='https://images.unsplash.com/photo-1557925923-33b251dc32a6?q=80&w=800&auto=format&fit=crop'"
                                      alt="Superhero Theme Cakes" class="w-full h-full object-cover">
                             </div>
@@ -690,7 +700,7 @@
                         <!-- Cake 3 -->
                         <div class="cake-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="489463079_1448665063074003_9170913617709119392_n.jpg"
+                                <img src="489463079_1448665063074003_9170913617709119392_n.jpg" loading="lazy"
                                      onerror="this.src='https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=800&auto=format&fit=crop'"
                                      alt="Cocomelon Kids Cake" class="w-full h-full object-cover">
                             </div>
@@ -707,7 +717,7 @@
                         <!-- Cake 4 -->
                         <div class="cake-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="488253758_1442571063683403_4251100749907473567_n.jpg"
+                                <img src="488253758_1442571063683403_4251100749907473567_n.jpg" loading="lazy"
                                      onerror="this.src='https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?q=80&w=800&auto=format&fit=crop'"
                                      alt="Red Velvet Cake" class="w-full h-full object-cover">
                             </div>
@@ -724,7 +734,7 @@
                         <!-- Cake 5 -->
                         <div class="cake-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="489305956_1448665259740650_3549309140238958396_n.jpg"
+                                <img src="489305956_1448665259740650_3549309140238958396_n.jpg" loading="lazy"
                                      onerror="this.src='https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=800&auto=format&fit=crop'"
                                      alt="Custom Fondant Cake" class="w-full h-full object-cover">
                             </div>
@@ -741,7 +751,7 @@
                         <!-- Cake 6 -->
                         <div class="cake-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?q=80&w=800&auto=format&fit=crop" alt="Classic Black Forest" class="w-full h-full object-cover">
+                                <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Classic Black Forest" class="w-full h-full object-cover">
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
                                 <h4 class="font-elegant font-semibold text-brand-DEFAULT mb-2" style="font-size:1.25rem;">Classic Black Forest</h4>
@@ -801,7 +811,7 @@
                         <!-- Dessert 1 -->
                         <div class="dessert-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="490517089_1452274292713080_3072637725145829695_n.jpg"
+                                <img src="490517089_1452274292713080_3072637725145829695_n.jpg" loading="lazy"
                                      onerror="this.src='https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=800&auto=format&fit=crop'"
                                      alt="Decadent Brownie Delight" class="w-full h-full object-cover">
                                 <div class="glass-badge-red absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold shadow-md">Chef's Pick</div>
@@ -819,7 +829,7 @@
                         <!-- Dessert 2 -->
                         <div class="dessert-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=800&auto=format&fit=crop" alt="Royal Falooda" class="w-full h-full object-cover">
+                                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Royal Falooda" class="w-full h-full object-cover">
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
                                 <h4 class="font-elegant font-semibold text-brand-DEFAULT mb-2" style="font-size:1.25rem;">Royal Falooda</h4>
@@ -834,7 +844,7 @@
                         <!-- Dessert 3 -->
                         <div class="dessert-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="mango_mousse.jpg"
+                                <img src="mango_mousse.jpg" loading="lazy"
                                      onerror="this.src='https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=800&auto=format&fit=crop'"
                                      alt="Mango Mousse" class="w-full h-full object-cover">
                             </div>
@@ -851,7 +861,7 @@
                         <!-- Dessert 4 -->
                         <div class="dessert-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=800&auto=format&fit=crop" alt="Tiramisu" class="w-full h-full object-cover">
+                                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Tiramisu" class="w-full h-full object-cover">
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
                                 <h4 class="font-elegant font-semibold text-brand-DEFAULT mb-2" style="font-size:1.25rem;">Classic Tiramisu</h4>
@@ -866,7 +876,7 @@
                         <!-- Dessert 5 -->
                         <div class="dessert-card rounded-2xl overflow-hidden image-zoom group flex flex-col min-w-[290px] md:min-w-[320px] max-w-[320px] shrink-0 border-brand-DEFAULT/10">
                             <div class="h-64 overflow-hidden relative border-b border-brand-DEFAULT/10">
-                                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=800&auto=format&fit=crop" alt="Gulab Jamun" class="w-full h-full object-cover">
+                                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Gulab Jamun" class="w-full h-full object-cover">
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
                                 <h4 class="font-elegant font-semibold text-brand-DEFAULT mb-2" style="font-size:1.25rem;">Gulab Jamun Delight</h4>
@@ -897,7 +907,7 @@
                 <!-- Brand -->
                 <div class="col-span-1 lg:col-span-1">
                     <a onclick="navTo('home')" class="flex items-center gap-3 mb-5 cursor-pointer">
-                        <img src="340373253_1417780449033746_7542344205153847137_n.jpg"
+                        <img src="340373253_1417780449033746_7542344205153847137_n.jpg" loading="lazy"
                              onerror="this.src='https://ui-avatars.com/api/?name=IB&background=c2600a&color=fff'"
                              alt="Indian Bakery Logo"
                              class="h-20 w-auto rounded-xl shadow-md border border-brand-DEFAULT/20">
@@ -972,15 +982,13 @@
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
                 if (preloader) preloader.classList.add('fade-out');
-            }, 500); // Reduced wait time for a snappier reveal
+            }, 500); 
         };
 
-        // Check if page is already loaded, otherwise wait for load event (with a fallback)
         if (document.readyState === 'complete') {
             hidePreloader();
         } else {
             window.addEventListener('load', hidePreloader);
-            // Fallback in case iframe preview blocks the load event
             setTimeout(hidePreloader, 2000); 
         }
 
@@ -1047,64 +1055,25 @@
             }
         }
 
-        // ---- REUSABLE CAROUSEL INIT LOGIC ----
+        // ---- NATIVE CAROUSEL SCROLL ----
         function initCarousel(scrollId, leftBtnId, rightBtnId) {
             const scrollContainer = document.getElementById(scrollId);
             const leftBtn  = document.getElementById(leftBtnId);
             const rightBtn = document.getElementById(rightBtnId);
+            
             if (!scrollContainer || !leftBtn || !rightBtn) return;
 
-            let isHovered = false;
+            leftBtn.addEventListener('click', () => {
+                scrollContainer.scrollBy({ left: -340, behavior: 'smooth' });
+            });
 
-            const wrapper = document.createElement('div');
-            wrapper.style.cssText = 'display:flex;gap:1.5rem;';
-            while (scrollContainer.firstChild) wrapper.appendChild(scrollContainer.firstChild);
-
-            const clone = wrapper.cloneNode(true);
-            scrollContainer.appendChild(wrapper);
-            scrollContainer.appendChild(clone);
-
-            let position = 0;
-            let speed = 0.35;
-            const baseSpeed = 0.35;
-
-            function autoScroll() {
-                if (!isHovered) {
-                    position -= speed;
-                    if (Math.abs(position) >= wrapper.scrollWidth) position = 0;
-                    wrapper.style.transform = `translateX(${position}px)`;
-                    clone.style.transform   = `translateX(${position}px)`;
-                }
-                requestAnimationFrame(autoScroll);
-            }
-
-            scrollContainer.addEventListener('mouseenter', () => { isHovered = true; speed = 0; });
-            scrollContainer.addEventListener('mouseleave', () => { isHovered = false; speed = baseSpeed; });
-
-            function smoothMove(target) {
-                const duration = 420;
-                const start = position;
-                const change = target - start;
-                const startTime = performance.now();
-                function animate(time) {
-                    const elapsed = time - startTime;
-                    const p = Math.min(elapsed / duration, 1);
-                    const ease = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p+2,2)/2;
-                    position = start + change * ease;
-                    wrapper.style.transform = `translateX(${position}px)`;
-                    clone.style.transform   = `translateX(${position}px)`;
-                    if (p < 1) requestAnimationFrame(animate);
-                }
-                requestAnimationFrame(animate);
-            }
-
-            leftBtn.addEventListener('click',  () => smoothMove(position + 340));
-            rightBtn.addEventListener('click', () => smoothMove(position - 340));
-            autoScroll();
+            rightBtn.addEventListener('click', () => {
+                scrollContainer.scrollBy({ left: 340, behavior: 'smooth' });
+            });
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            // Initialize both carousels dynamically
+            // Initialize both carousels with native scroll snapping
             initCarousel('cake-scroll', 'cake-left', 'cake-right');
             initCarousel('dessert-scroll', 'dessert-left', 'dessert-right');
         });
